@@ -1,19 +1,24 @@
+<!-- El documento debe iniciar con la declaración DOCTYPE () -->
 <!DOCTYPE html>
+<!-- Usar el atributo de idioma, es decir, que la etiqueta html diga: lang="es" -->
 <html lang="es">
 <head>
+    <!-- Metaetiqueta de charset, por ejemplo: meta charset="UTF-8" -->
     <meta charset="UTF-8">
+    <!-- Metaetiqueta de viewport para la correcta visualización en distintos dispositivos -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Un título descriptivo -->
     <title>MAE.dev // System Archive</title>
-
+    <!-- El vínculo a Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-
+    <!-- Un vínculo al archivo CSS ubicado en "css/styles.css" -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-
+    <!-- Sección de Encabezado (Header) -->
     <header class="top-header">
         <div class="header-container">
             <div class="logo-container">
@@ -23,13 +28,14 @@
                     <span class="logo-subtitle">MATIAS AFONSO ESTANQUEIRO</span>
                 </div>
             </div>
-            
+            <!-- Sección de Navegación (Nav): Para versión DESKTOP -->
+            <!-- Barra de navegación con al menos tres enlaces -->
             <nav class="desktop-nav">
                 <ul>
                     <li><a href="#sobre-mi">Sobre Mí</a></li>
-                    <li><a href="#tarjetas">Proyectos</a></li>
+                    <li><a href="#proyectos">Proyectos</a></li>
                     <li><a href="#contacto">Contacto</a></li>
-                    <li><a href="#peliculas">Extras</a></li>
+                    <li><a href="#extras">Extras</a></li>
                 </ul>
             </nav>
         </div>
@@ -50,20 +56,20 @@
         <section id="sobre-mi" class="content-section about-section">
             <div class="about-grid">
                 <div class="about-text">
-                    
-                    <div class="about-header">
+                    <div class="section-header">
                         <span class="line-decorator desktop-only"></span>
-                        <h2 class="about-title">
+                        <h2 class="section-title">
                             <span class="desktop-only">01 // </span>SOBRE MI
                         </h2>
                         <span class="section-module mobile-only">Módulo_01</span>
                     </div>
-                    
+                    <!-- Debe incluir un párrafo que describa quién eres, tus intereses y tu misión como desarrollador -->
                     <div class="about-paragraphs">
                         <p>Desarrollador Backend forjado en entornos corporativos, especializado en traducir lógicas de negocio complejas en soluciones tecnológicas eficientes. Mi perfil combina una fuerte capacidad de análisis funcional con la ejecución técnica, asegurando que el software resuelva problemas reales de los usuarios internos.</p>
                         <p>Mi trayectoria técnica se apoya en 2 años gestionando implementaciones críticas para sistemas POS, seguidos de más de 2 años construyendo aplicaciones robustas con PHP y Laravel. Actualmente me encuentro escalando mi perfil hacia arquitecturas empresariales con Java y Spring Boot, manteniendo siempre la adaptabilidad y el código limpio como pilares de mi trabajo diario.</p>
                     </div>
-
+                    <!-- Debe contener al menos dos tarjetas, cada una con imagen y texto -->
+                    <!-- Las tarjetas deben organizarse en columnas utilizando Flexbox o Grid -->
                     <div class="social-links-grid">
                         <a href="https://linkedin.com/in/matias-afonso-estanqueiro" target="_blank" class="social-card">
                             <div class="social-icon">
@@ -74,7 +80,6 @@
                                 <span class="social-subtitle">PROFESSIONAL_NETWORK</span>
                             </div>
                         </a>
-                        
                         <a href="https://github.com/matias-estanqueiro" target="_blank" class="social-card">
                             <div class="social-icon">
                                 <span class="material-symbols-outlined">terminal</span>
@@ -86,23 +91,26 @@
                         </a>
                     </div>  
                 </div>
-                
                 <div class="about-image-container desktop-only">
+                    <!-- Debe contener una imagen. Recuerda incluir el atributo alt en la imagen -->
+
+                    <!-- INFORMACIÓN: la imagen utilizada fue generada con IA (Nano Banana). Para una mejor visualización de la web, -->
+                    <!-- la misma se oculta en dispositivos móviles -->
                     <img src="./images/img-avatar.png" alt="Retrato de Matías estilo Cyberpunk" class="profile-img">
                     <div class="img-overlay">ARCHIVE_VISUAL_REF: 1682519419</div>
                 </div>
             </div>
         </section>
-
+        <!-- Debe mostrar de forma organizada, mediante un listado o una tabla, las tecnologías que dominas  -->
+        <!-- las tecnologías que deseas aprender y/o tus hobbies. -->
         <section id="habilidades" class="content-section bg-alt">
-            <div class="about-header">
+            <div class="section-header">
                 <span class="line-decorator desktop-only"></span>
-                <h2 class="about-title">
+                <h2 class="section-title">
                     <span class="desktop-only">02 // </span>HABILIDADES
                 </h2>
                 <span class="section-module mobile-only">Módulo_02</span>
             </div>
-
             <div class="skills-grid">
                 <div class="skill-category">
                     <h3 class="skill-title">
@@ -124,13 +132,18 @@
                         </li>
                         <li class="skill-item">
                             <div class="icon-container">
+                                <span class="skill-abbrev">TS</span>
+                            </div>
+                            <span class="skill-name">TYPESCRIPT (En progreso...)</span>
+                        </li>
+                        <li class="skill-item">
+                            <div class="icon-container">
                                 <span class="skill-abbrev">VUE</span>
                             </div>
                             <span class="skill-name">VUE.JS FRAMEWORK</span>
                         </li>
                     </ul>
                 </div>
-                
                 <div class="skill-category bordered">
                     <h3 class="skill-title">
                         <span class="material-symbols-outlined text-cyan">psychology</span>
@@ -163,7 +176,6 @@
                         </li>
                     </ul>
                 </div>
-
                 <div class="skill-category">
                     <h3 class="skill-title">
                         <span class="material-symbols-outlined text-cyan">rocket_launch</span>
@@ -198,16 +210,20 @@
                 </div>
             </div>
         </section>
-
-        <section id="tarjetas" class="content-section">
-            <div class="about-header">
+        <section id="proyectos" class="content-section">
+            <div class="section-header">
                 <span class="line-decorator desktop-only"></span>
-                <h2 class="about-title">
+                <h2 class="section-title">
                     <span class="desktop-only">03 // </span>PROYECTOS
                 </h2>
                 <span class="section-module mobile-only">Módulo_03</span>
             </div>
 
+            <!-- PUNTO DE MEJORA: agregar una sub-sección de proyectos personales -->
+            <!-- ya que los proyectos empresariales solo pueden ser mencionados, no puedo colocar código fuente -->
+
+            <!-- PUNTO DE MEJORA: el carousel de proyectos se crea utilizando HTML y CSS, se puede refactorizar -->
+            <!-- utilizando JS o REACT más adelante -->
             <h3 class="carousel-category">// PROFESIONAL</h3>
             <div class="carousel-wrapper">
                 <button class="global-arrow prev desktop-only" onclick="document.getElementById('prof-carousel').scrollBy({left: -500, behavior: 'smooth'})">&#10094;</button>
@@ -232,8 +248,9 @@
                         <div class="project-img-wrapper">
                             <img src="images/img-project-02.png" alt="JIRA AI Integration" class="card-img">
                             <div class="project-badges">
-                                <span class="badge-tech">JAVA</span>
-                                <span class="badge-tech">GEMINI API</span>
+                                <span class="badge-tech">PHP</span>
+                                <span class="badge-tech">LARAVEL</span>
+                                <span class="badge-tech">IA</span>
                             </div>
                         </div>
                         <div class="project-info">
@@ -247,7 +264,7 @@
                         <div class="project-img-wrapper">
                             <img src="images/img-project-03.png" alt="Workforce Dashboard" class="card-img">
                             <div class="project-badges">
-                                <span class="badge-tech">VUE.JS</span>
+                                <span class="badge-tech">PHP</span>
                                 <span class="badge-tech">LARAVEL</span>
                             </div>
                         </div>
@@ -262,8 +279,8 @@
                         <div class="project-img-wrapper">
                             <img src="images/img-project-04.png" alt="Fiscal Monitor" class="card-img">
                             <div class="project-badges">
-                                <span class="badge-tech">JAVA</span>
-                                <span class="badge-tech">SPRING BOOT</span>
+                                <span class="badge-tech">PHP</span>
+                                <span class="badge-tech">LARAVEL</span>
                             </div>
                         </div>
                         <div class="project-info">
@@ -277,8 +294,8 @@
                         <div class="project-img-wrapper">
                             <img src="images/img-project-05.png" alt="Promo Engine" class="card-img">
                             <div class="project-badges">
-                                <span class="badge-tech">PHP</span>
-                                <span class="badge-tech">MySQL</span>
+                                <span class="badge-tech">JAVA</span>
+                                <span class="badge-tech">SPRING BOOT</span>
                             </div>
                         </div>
                         <div class="project-info">
@@ -293,10 +310,16 @@
             </div>
         </section>
 
+        <!-- Formulario de contacto -->
+        <!-- Debe incluir un formulario básico con los siguientes campos: Nombre, Apellido, Email y Teléfono. -->
+        <!-- Debe contener un botón de submit -->
+
+        <!-- PUNTO DE MEJORA: generar el backend necesario para que el formulario se integre con alertas -->
+        <!-- a alguna red social o servicio de mensajería -->
         <section id="contacto" class="content-section bg-alt">
-            <div class="about-header">
+            <div class="section-header">
                 <span class="line-decorator desktop-only"></span>
-                <h2 class="about-title">
+                <h2 class="section-title">
                     <span class="desktop-only">04 // </span>Contacto
                 </h2>
                 <span class="section-module mobile-only">Módulo_04</span>
@@ -325,11 +348,13 @@
                 </form>
             </div>
         </section>
-
-        <section id="peliculas" class="content-section">
-            <div class="about-header">
+        <!-- INFORMACIÓN: la sección de Extras: Reemplaza a la sección "películas" ya que además de mostrar películas favoritas -->
+        <!-- también incluye juegos y música. Todos los íconos son links a información y reviews sobre la pelicula, -->
+        <!-- juego o banda musical en cuestión -->
+        <section id="extras" class="content-section">
+            <div class="section-header">
                 <span class="line-decorator desktop-only"></span>
-                <h2 class="about-title">
+                <h2 class="section-title">
                     <span class="desktop-only">05 // </span>EXTRAS
                 </h2>
                 <span class="section-module mobile-only">Módulo_05</span>
@@ -424,15 +449,14 @@
                 </div>
             </div>
         </section>
-
     </main>
-
+    <!-- Sección de Navegación (Nav): Para versión MOBILE -->
     <nav class="mobile-bottom-nav mobile-only">
         <a href="#sobre-mi" class="nav-item active">
             <span class="material-symbols-outlined">person_search</span>
             <span>Sobre Mí</span>
         </a>
-        <a href="#tarjetas" class="nav-item">
+        <a href="#proyectos" class="nav-item">
             <span class="material-symbols-outlined">developer_board</span>
             <span>Proyectos</span>
         </a>
@@ -440,11 +464,13 @@
             <span class="material-symbols-outlined">alternate_email</span>
             <span>Contacto</span>
         </a>
-        <a href="#peliculas" class="nav-item">
+        <a href="#extras" class="nav-item">
             <span class="material-symbols-outlined">auto_awesome</span>
             <span>Extras</span>
         </a>
     </nav>
+    <!-- Sección de Pie de Página (Footer) -->
+    <!-- Debe incorporar información adicional, como enlaces a redes sociales u otros datos relevantes. -->
 
     <footer>
         <div class="footer-content">

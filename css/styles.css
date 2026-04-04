@@ -1,31 +1,41 @@
+/* PORTFOLIO PERSONAL - TPO 1 - DESARROLLO WEB FRONTEND */
+/* DISEÑO: MOBILE FIRST */
+
 /* ==========================================================================
-   VARIABLES (Extraídas del Prototipado con Google-Stitch)
+   ÍNDICE DEL CSS
+   1. Variables y Reset
+   2. Tipografía y Utilidades
+   3. Layout Base y Header
+   4. Secciones (Hero, Sobre Mí)
+   5. Grillas y Carruseles (Proyectos, Habilidades, Extras)
+   6. Formularios y Botones
+   7. Footer
+   8. Nav-bar Mobile
+   9. Media Queries
+   ========================================================================== */
+
+/* ==========================================================================
+   1. VARIABLES y RESET
    ========================================================================== */
 :root {
     /* Paleta de Colores Cyberpunk */
-    --background: #131313;
-    --surface-container-low: #1c1b1b;
-    --surface-container-highest: #353534;
-    --primary-container: #00f0ff;
+    --bg-dark: #131313;
+    --surface: #1c1b1b;
+    --surface-hover: #2a2a2a;
+    --on-section: #0e0e0e;
+    --cyan: #00f0ff;
     --on-primary: #00363a;
-    --on-surface: #e5e2e1;
-    --on-surface-variant: #b9cacb;
-    --outline: #849495;
-    --outline-variant: #3b494b;
-    --secondary-container: #2f486a;
-    --on-secondary-container: #9eb7de;
-    
+    --text-main: #e5e2e1;
+    --text-muted: #849495;
+
     /* Tipografías de Google Fonts */
-    --font-headline: 'Space Grotesk', sans-serif;
+    --font-heading: 'Space Grotesk', sans-serif;
     --font-body: 'Manrope', sans-serif;
-    
+
     /* Variables de Diseño Responsivo */
     --transition-speed: 0.3s;
 }
 
-/* ==========================================================================
-   RESET & BASE
-   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -38,11 +48,13 @@ html {
 }
 
 body {
-    background-color: var(--background);
-    color: var(--on-surface);
+    background-color: var(--bg-dark);
+    color: var(--text-main);
     font-family: var(--font-body);
     line-height: 1.6;
     overflow-x: hidden;
+    /* Espacio inferior para que el nav móvil no tape contenido al final */
+    padding-bottom: 80px; 
 }
 
 a {
@@ -51,99 +63,20 @@ a {
     transition: color var(--transition-speed);
 }
 
-/* Selección de texto */
-::selection {
-    background-color: var(--primary-container);
-    color: var(--on-primary);
-}
-
-/* Animación requerida: Pulse dot */
-@keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-}
-.pulse-dot {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    background-color: var(--primary-container);
-    border-radius: 50%;
-    box-shadow: 0 0 5px var(--primary-container);
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-/* ==========================================================================
-   LÓGICA RESPONSIVE (Ocultar/Mostrar según dispositivo)
-   ========================================================================== */
 /* Por defecto (Mobile First) ocultamos elementos exclusivos de Desktop */
 .desktop-only { display: none !important; }
 .mobile-only { display: block !important; }
 
-/* Breakpoint para Tablet/Desktop (ej. 768px hacia arriba) */
-@media (min-width: 768px) {
-    .desktop-only {
-        display: block; /* o flex/inline dependiendo del contexto */
-    }
-    span.desktop-only {
-        display: inline;
-    }
-    .mobile-only {
-        display: none !important;
-    }
-}
-
 /* ==========================================================================
-   ÍNDICE DEL CSS
-   1. Variables y Reset
-   2. Tipografía y Utilidades (Glassmorphism)
-   3. Layout Base y Header
-   4. Secciones (Hero, Sobre Mí)
-   5. Grillas y Carruseles (Proyectos, Habilidades, Extras)
-   6. Formularios y Botones
-   7. Media Queries (Desktop)
+   2. TIPOGRAFÍA Y UTILIDADES
    ========================================================================== */
-
-/* --- 1. VARIABLES Y RESET --- */
-:root {
-    --bg-dark: #131313;
-    --surface: #1c1b1b;
-    --surface-hover: #2a2a2a;
-    --cyan: #00f0ff;
-    --cyan-dark: #006970;
-    --text-main: #e5e2e1;
-    --text-muted: #849495;
-    
-    --font-heading: 'Space Grotesk', sans-serif;
-    --font-body: 'Manrope', sans-serif;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    background-color: var(--bg-dark);
-    color: var(--text-main);
-    font-family: var(--font-body);
-    line-height: 1.6;
-    /* Espacio inferior para que el nav móvil no tape contenido al final */
-    padding-bottom: 80px; 
-}
-
-/* --- 2. TIPOGRAFÍA Y UTILIDADES --- */
 h1, h2, h3, h4, .logo-title {
     font-family: var(--font-heading);
 }
 
 .text-cyan { color: var(--cyan); }
 
-/* Utilidad Glassmorphism (Vidrio esmerilado de tu diseño) */
+/* Resalta contenedores por sobre el fondo de la web */
 .glass-panel {
     background: rgba(28, 27, 27, 0.4);
     backdrop-filter: blur(20px);
@@ -151,11 +84,28 @@ h1, h2, h3, h4, .logo-title {
     border-radius: 12px;
 }
 
-/* Animación requerida por TP */
+/* Selección de texto */
+::selection {
+    background-color: var(--cyan);
+    color: var(--on-primary);
+}
+
+/* Animación requerida: Pulse dot (Opacidad + Resplandor) */
 @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(0, 240, 255, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0); }
+    0% { 
+        opacity: 1; 
+        box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.7); 
+    }
+    50% { 
+        opacity: 0.5; 
+    }
+    70% { 
+        box-shadow: 0 0 0 10px rgba(0, 240, 255, 0); 
+    }
+    100% { 
+        opacity: 1; 
+        box-shadow: 0 0 0 0 rgba(0, 240, 255, 0); 
+    }
 }
 
 .pulse-dot {
@@ -164,34 +114,39 @@ h1, h2, h3, h4, .logo-title {
     height: 8px;
     background-color: var(--cyan);
     border-radius: 50%;
-    animation: pulse 2s infinite;
+    box-shadow: 0 0 5px var(--cyan);
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* --- 3. LAYOUT BASE Y HEADER --- */
+
+/* ==========================================================================
+   3. LAYOUT BASE Y HEADER
+   ========================================================================== */
 .content-section {
     padding: 60px 24px;
-    max-width: 90%; /* Aumentamos el ancho máximo general para Desktop */
+    max-width: 90%;
     margin: 0 auto;
 }
 
 .bg-alt {
-    background-color: #0e0e0e;
+    background-color: var(--on-section);
 }
 
 .section-header {
-    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
     border-bottom: 1px solid rgba(132, 148, 149, 0.2);
     padding-bottom: 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
 }
 
 .section-title {
+    font-family: var(--font-heading);
     font-size: 1.5rem;
     font-weight: 700;
-    text-transform: uppercase;
     font-style: italic;
+    text-transform: uppercase;
     letter-spacing: -1px;
 }
 
@@ -234,7 +189,6 @@ h1, h2, h3, h4, .logo-title {
     gap: 12px;
 }
 
-/* DISEÑO MOBILE POR DEFECTO PARA EL HEADER */
 .mobile-icon {
     color: var(--cyan);
 }
@@ -277,20 +231,33 @@ h1, h2, h3, h4, .logo-title {
     transform: scale(1.1);
 }
 
-/* --- 4. HERO Y SOBRE MÍ --- */
-/* DISEÑO MOBILE POR DEFECTO PARA EL HERO */
+/* ==========================================================================
+   4. SECCIONES (HERO, SOBRE MÍ)
+   ========================================================================== */
 .hero-section {
-    padding: 120px 24px 20px; /* Menos padding inferior para que se pegue "Sobre Mi" */
+    padding: 120px 24px 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start; /* Alineado a la izquierda en mobile */
-    background: none; /* Sin imagen de fondo en mobile */
+    align-items: flex-start;
     width: 100%;
 }
 
 .hero-content {
     width: 100%;
+}
+
+.main-title {
+    font-size: 3.5rem;
+    color: var(--cyan);
+    text-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+    margin-bottom: 16px;
+    letter-spacing: -2px;
+}
+
+.hero-subtitle {
+    /* En mobile no se repite el nombre porque se encuentra en el header (nav) */
+    display: none;
 }
 
 .status-indicator {
@@ -307,23 +274,13 @@ h1, h2, h3, h4, .logo-title {
     letter-spacing: 0.1em;
 }
 
-.main-title {
-    font-size: 3.5rem; /* Tamaño grande pero apto para celular */
-    color: var(--cyan);
-    text-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
-    margin-bottom: 16px;
-    letter-spacing: -2px;
-}
-
-.hero-subtitle {
-    display: none; /* En mobile no repetimos tu nombre en el body */
-}
-
 .about-grid {
     display: flex;
     flex-direction: column;
     gap: 32px;
 }
+
+.about-image-container { position: relative; }
 
 .profile-img {
     width: 100%;
@@ -336,7 +293,6 @@ h1, h2, h3, h4, .logo-title {
     filter: grayscale(0%);
 }
 
-.about-image-container { position: relative; }
 .img-overlay {
     position: absolute;
     bottom: 16px;
@@ -348,25 +304,6 @@ h1, h2, h3, h4, .logo-title {
     padding: 4px 8px;
 }
 
-/* Header específico para Sobre Mí (Diseño base / Mobile) */
-.about-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 24px;
-    border-bottom: 1px solid rgba(132, 148, 149, 0.2);
-    padding-bottom: 16px;
-}
-
-.about-title {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    font-weight: 700;
-    font-style: italic;
-    text-transform: uppercase;
-    letter-spacing: -1px;
-}
-
 .about-paragraphs {
     margin-bottom: 32px;
 }
@@ -376,7 +313,6 @@ h1, h2, h3, h4, .logo-title {
     color: var(--text-main);
 }
 
-/* Tarjetas de Redes Sociales (Diseño Mobile) */
 .social-links-grid {
     display: flex;
     flex-direction: column;
@@ -406,14 +342,12 @@ h1, h2, h3, h4, .logo-title {
     font-size: 2rem;
 }
 
-/* Contenedor Flex para poder ordenar los textos */
 .social-info {
     display: flex;
     flex-direction: column;
 }
 
 .social-title {
-    order: 1; /* En celular, el título va ARRIBA */
     font-family: var(--font-heading);
     font-size: 1.2rem;
     font-weight: bold;
@@ -422,7 +356,6 @@ h1, h2, h3, h4, .logo-title {
 }
 
 .social-subtitle {
-    order: 2; /* En celular, el subtítulo va ABAJO */
     font-family: var(--font-heading);
     font-size: 0.8rem;
     color: var(--text-muted);
@@ -431,15 +364,17 @@ h1, h2, h3, h4, .logo-title {
     margin-top: 4px;
 }
 
-/* --- 5. GRILLAS Y CARRUSELES (Flexbox/Grid Requerido por TP) --- */
-/* Habilidades */
+/* ==========================================================================
+   5. GRILLAS Y CARRUSELES (PROYECTOS, HABILIDADES, EXTRAS)
+   ========================================================================== */
+
+/* HABILIDADES */
 .skills-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 32px;
 }
 
-/* Títulos de categorías con Íconos */
 .skill-title {
     display: flex;
     align-items: center;
@@ -450,7 +385,6 @@ h1, h2, h3, h4, .logo-title {
     letter-spacing: 0.1em;
 }
 
-/* Lista base de Habilidades */
 .skill-list { 
     list-style: none; 
     display: flex;
@@ -458,14 +392,12 @@ h1, h2, h3, h4, .logo-title {
     gap: 16px; 
 }
 
-/* Item individual con Flexbox (Para desktop y mobile) */
 .skill-item {
     display: flex;
     align-items: center;
     gap: 16px;
 }
 
-/* EL COMPONENTE ESTRELLA: El contenedor del ícono con efecto Glow */
 .icon-container {
     width: 56px; 
     height: 56px; 
@@ -475,18 +407,15 @@ h1, h2, h3, h4, .logo-title {
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
     transition: all var(--transition-speed) ease; 
 }
 
-/* Efecto Glow Cyberpunk al hacer Hover exigido por TP */
 .icon-container:hover {
     border-color: var(--cyan);
     box-shadow: 0 0 10px rgba(0, 240, 255, 0.4); 
     background-color: var(--surface-hover); 
 }
 
-/* Estilo para las abreviaciones (PHP, JV, VUE) */
 .skill-abbrev {
     font-family: var(--font-heading);
     color: var(--cyan);
@@ -494,7 +423,6 @@ h1, h2, h3, h4, .logo-title {
     font-size: 1rem;
 }
 
-/* Estilo para el nombre de la habilidad */
 .skill-name {
     font-family: var(--font-body);
     color: var(--text-main);
@@ -503,140 +431,34 @@ h1, h2, h3, h4, .logo-title {
     letter-spacing: 0.05em;
 }
 
-/* --- Títulos de las Categorías de Proyectos --- */
-.carousel-category {
-    font-family: var(--font-heading);
-    font-size: 1.1rem;
-    color: var(--cyan);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 24px;
-    margin-top: 40px;
-}
-
-/* --- Contenedor del Carrusel --- */
-.projects-carousel {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth; /* ESTO ES LA MAGIA DE LAS FLECHAS CSS */
-    gap: 24px;
-    /* --- CAMBIO: Añadimos padding superior para el efecto hover --- */
-    padding-top: 10px; /* Da espacio arriba para el translateY(-5px) */
-    padding-bottom: 32px;
-    width: 100%;
-}
-
-/* Ocultar barra de scroll nativa */
-.projects-carousel::-webkit-scrollbar {
-    display: none;
-}
-
-/* --- Tarjeta de Proyecto (Base / Mobile: Alta y Estrecha) --- */
-.project-card {
-    flex: 0 0 85%; /* En celular ocupa el 85% del ancho */
-    scroll-snap-align: center;
-    position: relative; /* Clave para las flechas y badges */
-    background: var(--surface);
-    border: 1px solid rgba(132, 148, 149, 0.1);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform var(--transition-speed), border-color var(--transition-speed);
-}
-
-.project-card:hover {
-    border-color: rgba(0, 240, 255, 0.3);
-    transform: translateY(-5px);
-}
-
-/* --- Imagen y Badges --- */
-.project-img-wrapper {
-    position: relative;
-    height: 250px; /* Más alta en celular para dar formato retrato */
-    width: 100%;
-}
-
+/* PROYECTOS */
 .card-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.6);
+    filter: brightness(0.7);
     transition: filter 0.4s ease;
-    /* --- NUEVO: Mejora el suavizado de la imagen al redimensionar --- */
-    image-rendering: auto; /* También puedes probar con 'auto' si no notas mejora */
+    image-rendering: auto;
     backface-visibility: hidden;
 }
 
-.project-card:hover .card-img {
-    filter: brightness(1); /* Se ilumina al pasar el mouse */
-}
-
-/* Las badges posicionadas SOBRE la imagen abajo a la derecha */
-.project-badges {
-    position: absolute;
-    bottom: 12px;
-    right: 12px;
-    display: flex;
-    gap: 8px;
-    z-index: 5;
-}
-
-.badge-tech {
-    background: rgba(19, 19, 19, 0.85); /* Fondo oscuro semitransparente */
-    color: var(--cyan);
-    border: 1px solid rgba(0, 240, 255, 0.3);
-    padding: 4px 10px;
-    border-radius: 4px;
+.card-category {
     font-family: var(--font-heading);
-    font-size: 0.65rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    backdrop-filter: blur(4px);
-}
-
-/* --- Información de la Tarjeta --- */
-.project-info {
-    padding: 24px;
-}
-
-.project-title {
-    font-family: var(--font-heading);
-    font-size: 1.3rem;
-    color: var(--cyan);
-    margin-bottom: 12px;
-    text-transform: uppercase;
-    letter-spacing: -0.5px;
-}
-
-.project-desc {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-}
-
-/* --- Títulos de las Categorías de Proyectos --- */
-.carousel-category {
-    font-family: var(--font-heading);
-    font-size: 1.1rem;
+    font-size: 0.6rem;
     color: var(--cyan);
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    margin-bottom: 24px;
-    margin-top: 40px;
-}
-
-/* --- Contenedor Global y Carrusel --- */
-.carousel-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
+    display: block;
+    margin-bottom: 8px;
 }
 
 .projects-carousel {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
     gap: 24px;
+    padding-top: 10px;
     padding-bottom: 32px;
     width: 100%;
 }
@@ -645,7 +467,6 @@ h1, h2, h3, h4, .logo-title {
     display: none;
 }
 
-/* --- Tarjeta de Proyecto (Mobile: Más alta que ancha) --- */
 .project-card {
     flex: 0 0 85%;
     display: flex;
@@ -663,23 +484,14 @@ h1, h2, h3, h4, .logo-title {
     transform: translateY(-5px);
 }
 
-/* --- Imagen y Badges Tecnológicas --- */
-.project-img-wrapper {
-    position: relative;
-    height: 250px; /* Base height para Mobile */
-    width: 100%;
-}
-
-.card-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.7);
-    transition: filter 0.4s ease;
-}
-
 .project-card:hover .card-img {
     filter: brightness(1);
+}
+
+.project-img-wrapper {
+    position: relative;
+    height: 250px;
+    width: 100%;
 }
 
 .project-badges {
@@ -691,33 +503,9 @@ h1, h2, h3, h4, .logo-title {
     z-index: 5;
 }
 
-.badge-tech {
-    background: rgba(19, 19, 19, 0.85);
-    color: var(--cyan);
-    border: 1px solid rgba(0, 240, 255, 0.3);
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-family: var(--font-heading);
-    font-size: 0.65rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    backdrop-filter: blur(4px);
-}
-
-/* --- Información de la Tarjeta --- */
 .project-info {
     padding: 24px;
     flex-grow: 1;
-}
-
-.card-category {
-    font-family: var(--font-heading);
-    font-size: 0.6rem;
-    color: var(--cyan);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    display: block;
-    margin-bottom: 8px;
 }
 
 .project-title {
@@ -735,8 +523,37 @@ h1, h2, h3, h4, .logo-title {
     line-height: 1.6;
 }
 
-/* --- FLECHAS GLOBALES (Solo Desktop) --- */
+.badge-tech {
+    background: rgba(19, 19, 19, 0.85);
+    color: var(--cyan);
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-family: var(--font-heading);
+    font-size: 0.65rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    backdrop-filter: blur(4px);
+}
+
+.carousel-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.carousel-category {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--cyan);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 24px;
+    margin-top: 40px;
+}
+
 .global-arrow {
+    /* --- FLECHAS CAROUSEL (Solo Desktop) --- */
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -765,7 +582,9 @@ h1, h2, h3, h4, .logo-title {
 .global-arrow.prev { left: 0; }
 .global-arrow.next { right: 0; }
 
-/* --- 6. FORMULARIOS --- */
+/* ==========================================================================
+   6. FORMULARIOS Y BOTONES
+   ========================================================================== */
 .form-container { padding: 32px 24px; }
 .form-subtitle { margin-bottom: 24px; color: var(--text-muted); }
 
@@ -811,54 +630,9 @@ h1, h2, h3, h4, .logo-title {
     box-shadow: 0 0 15px var(--cyan);
 }
 
-/* --- NAV MOBILE (Fijado abajo) --- */
-.mobile-bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(19, 19, 19, 0.95);
-    backdrop-filter: blur(20px);
-    border-top: 1px solid rgba(0, 240, 255, 0.1);
-    box-shadow: 0 -4px 20px rgba(0, 240, 255, 0.1);
-    
-    /* ESTO FUERZA LA ALINEACIÓN HORIZONTAL */
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: space-around;
-    align-items: center;
-    
-    padding: 12px 0 calc(12px + env(safe-area-inset-bottom));
-    z-index: 100;
-}
-
-.nav-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    color: var(--text-muted);
-    font-family: var(--font-heading);
-    font-size: 0.6rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    gap: 4px;
-    transition: 0.3s ease;
-}
-
-/* Efecto Glow Cyberpunk para el item activo/hover */
-.nav-item.active, .nav-item:hover {
-    color: var(--cyan);
-    transform: scale(1.1);
-}
-
-.nav-item.active .material-symbols-outlined, 
-.nav-item:hover .material-symbols-outlined {
-    text-shadow: 0 0 12px var(--cyan);
-}
-
-/* --- FOOTER (Base / Mobile) --- */
+/* ==========================================================================
+   7. FOOTER
+   ========================================================================== */
 footer {
     background: var(--bg-dark);
     padding: 20px 0px 5px 0px;
@@ -902,17 +676,90 @@ footer {
     text-align: center;
 }
 
-/* --- 7. MEDIA QUERIES (DESKTOP) --- */
-/* Cambia la estructura al llegar a pantallas de 768px (Tablets/PCs) */
-@media (min-width: 768px) {
-    body { padding-bottom: 0; } /* Quitamos padding del nav móvil */
+/* ==========================================================================
+   8. NAV-BAR MOBILE
+   ========================================================================== */
+.mobile-bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(19, 19, 19, 0.95);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(0, 240, 255, 0.1);
+    box-shadow: 0 -4px 20px rgba(0, 240, 255, 0.1);
     
-    /* Agregamos !important aquí para vencer a la regla de mobile */
+    /* ESTO FUERZA LA ALINEACIÓN HORIZONTAL */
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-around;
+    align-items: center;
+    
+    padding: 12px 0 calc(12px + env(safe-area-inset-bottom));
+    z-index: 100;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-family: var(--font-heading);
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    gap: 4px;
+    transition: 0.3s ease;
+}
+
+.nav-item.active, .nav-item:hover {
+    color: var(--cyan);
+    transform: scale(1.1);
+}
+
+.nav-item.active .material-symbols-outlined, 
+.nav-item:hover .material-symbols-outlined {
+    text-shadow: 0 0 12px var(--cyan);
+}
+
+/* ==========================================================================
+   9. MEDIA QUERYS (DESKTOP)
+   ========================================================================== */
+
+/* BreakPoint: 768px */
+@media (min-width: 768px) {
+    body { padding-bottom: 0; }
+
     .mobile-only { display: none !important; }
     .desktop-only { display: block !important; }
     span.desktop-only { display: inline !important; }
+
+    .section-header {
+        justify-content: flex-start;
+        border-bottom: none;
+        padding-bottom: 0;
+        margin-bottom: 32px;
+    }
+
+    .line-decorator {
+        display: inline-block;
+        width: 30px;
+        height: 1px;
+        background-color: var(--cyan);
+        margin-right: 16px;
+    }
+
+    .section-title {
+        font-size: 0.7rem; /* Mucho más chico en desktop */
+        font-style: normal;
+        letter-spacing: 0.3em;
+        color: var(--cyan);
+    }
     
-    /* Mostrar Nav Desktop */
+    /* NAVBAR */
+    /* Se muestra Nav-Bar superior */
     .desktop-nav { display: block; }
     .desktop-nav ul {
         display: flex;
@@ -928,17 +775,20 @@ footer {
         letter-spacing: 0.1em;
         transition: color 0.3s;
     }
+
     .desktop-nav a:hover { color: var(--cyan); }
 
-    /* INVERSIÓN DEL NAV PARA DESKTOP */
-    .mobile-icon { display: none; } /* Ocultamos icono de terminal */
-    .logo-subtitle { display: none; } /* Ocultamos tu nombre del nav */
-    .logo-title { display: block; } /* Mostramos < MAE.dev /> en el nav */
+    /* Ocultamos icono de terminal */
+    .mobile-icon { display: none; }
+    /* Ocultamos tu nombre del nav */
+    .logo-subtitle { display: none; }
+    /* Mostramos < MAE.dev /> en el nav */
+    .logo-title { display: block; }
     
-    /* DISEÑO DESKTOP PARA EL HERO */
+    /* HERO */
     .hero-section {
-        min-height: 100vh; /* Ocupa el 100% del alto de la pantalla */
-        padding: 0; /* Quitamos padding para que se centre perfecto */
+        min-height: 100vh;
+        padding: 0;
         align-items: center;
         text-align: center;
     }
@@ -951,8 +801,8 @@ footer {
         width: 100%;
         height: 100%;
         background-image: url('../images/bg-hero.png');
-        opacity: 0.15; /* Ajusta la opacidad para que el texto sea legible */
-        z-index: -1; /* Coloca la imagen detrás del contenido */
+        opacity: 0.15;
+        z-index: -1;
     }
     
     .hero-content {
@@ -962,12 +812,12 @@ footer {
     }
 
     .main-title { 
-        font-size: 7rem; /* Tamaño gigante para PC */
+        font-size: 7rem;
         margin-bottom: 24px;
     }
     
     .hero-subtitle {
-        display: block; /* Mostramos tu nombre en el body en PC */
+        display: block;
         font-size: 1.5rem;
         font-family: var(--font-heading);
         color: var(--text-muted);
@@ -975,35 +825,12 @@ footer {
         text-transform: uppercase;
     }
     
-    /* Layout Sobre Mí Desktop */
+    /* SOBRE MI */
     .about-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 80px; /* Separación entre texto e imagen */
         align-items: center;
-    }
-
-    /* Transformación del Header Sobre Mí (línea sólida y texto chico) */
-    .about-header {
-        justify-content: flex-start;
-        border-bottom: none;
-        padding-bottom: 0;
-        margin-bottom: 32px;
-    }
-
-    .line-decorator {
-        display: inline-block;
-        width: 30px;
-        height: 1px;
-        background-color: var(--cyan);
-        margin-right: 16px;
-    }
-
-    .about-title {
-        font-size: 0.7rem; /* Mucho más chico en desktop */
-        font-style: normal;
-        letter-spacing: 0.3em;
-        color: var(--cyan);
     }
 
     .about-paragraphs p {
@@ -1048,22 +875,33 @@ footer {
         font-size: 1.5rem;
     }
 
-    /* Contenedor de Imagen de Desktop con corte a 90vh */
     .about-image-container {
-        height: 80vh; /* Máximo 90% del alto de la pantalla */
+        height: 80vh;
         width: 100%;
         border-radius: 12px;
-        overflow: hidden; /* Corta lo que sobra */
+        overflow: hidden;
         position: relative;
     }
 
     .profile-img {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* Se asegura de llenar la caja cortando arriba y abajo proporcionalmente */
+        object-fit: cover;
     }
-    
-    /* Grilla de Habilidades Desktop a 3 columnas */
+
+    /* GRILLAS Y CARROUSELES */
+    .carousel-wrapper {
+        padding: 0 64px; 
+    }
+
+    .projects-carousel {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .global-arrow.prev { left: 2px; }
+    .global-arrow.next { right: 2px; }
+
     .skills-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 20px;
@@ -1076,26 +914,25 @@ footer {
     }
 
     .projects-carousel {
-        padding-left: 64px;  /* Crea 64px de espacio vacío a la izquierda */
-        padding-right: 64px; /* Crea 64px de espacio vacío a la derecha */
+        padding-left: 64px;
+        padding-right: 64px;
     }
     
-    /* Ajustes del Carrusel para Desktop (Tarjetas más anchas) */
     .project-card {
-        flex: 0 0 550px; /* Ancho fijo para que sean horizontales */
+        flex: 0 0 550px;
     }
     
     .project-img-wrapper {
-        height: 200px; /* Reducimos la altura en PC para que la tarjeta se vea "apaisada" */
+        height: 200px;
     }
 
     .card { min-width: auto; }
     
-    /* --- Ajuste del Formulario para Desktop --- */
+    /* CONTACTO */
     .form-container {
-        max-width: 800px;      /* Limita el ancho máximo del panel de vidrio */
-        margin: 0 auto;        /* Lo centra horizontalmente en la pantalla */
-        padding: 48px 64px;    /* Le da más "aire" interno en la versión PC */
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 48px 64px;
     }
 
     .contact-form {
@@ -1107,9 +944,9 @@ footer {
         grid-column: span 2;
     }
     
-    /* --- FOOTER DESKTOP --- */
+    /* FOOTER */
     footer {
-        padding: 0; /* Quitamos el padding de mobile */
+        padding: 0;
     }
     
     .footer-content {
@@ -1128,30 +965,17 @@ footer {
         justify-content: flex-end;
         gap: 32px;
     }
-    
+
     .copyright {
         margin: 0;
     }
-
-    /* 1. Le damos el espacio de seguridad a la caja "padre" para que las tarjetas se corten antes */
-    .carousel-wrapper {
-        padding: 0 64px; 
-    }
-
-    /* 2. Le quitamos el padding que le habíamos puesto antes al carrusel interior */
-    .projects-carousel {
-        padding-left: 0;
-        padding-right: 0;
-    }
-
-    /* 3. Centramos las flechas (que miden 48px) exactamente en el medio de esos 64px de espacio */
-    .global-arrow.prev { left: 2px; }
-    .global-arrow.next { right: 2px; }
 }
 
-/* --- 8. MEDIA QUERIES (PANTALLAS GRANDES) --- */
+/* BreakPoint: 1200 */
 @media (min-width: 1200px) {
-    /* Recién en monitores grandes ponemos los botones uno al lado del otro */
+    /* Mejora la visualización de los botones de redes sociales en pantallas grandes */
+    /* colocando uno al lado del otro (y mostrando en pantallas medianas/ chicas uno */
+    /* encima del otro) */
     .social-links-grid {
         grid-template-columns: 1fr 1fr;
     }
