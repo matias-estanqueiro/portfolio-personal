@@ -2,6 +2,8 @@
 
 Este proyecto es un portafolio personal desarrollado como parte del Trabajo Práctico Obligatorio 1 de la materia Desarrollo Web Frontend. El objetivo principal es presentar información personal, proyectos realizados y datos de contacto, aplicando buenas prácticas de HTML5 y CSS3, así como principios de diseño responsivo y accesibilidad. El diseño sigue una estética cyberpunk, priorizando la experiencia de usuario tanto en dispositivos móviles como de escritorio.
 
+El mockup del proyecto fue generado mediante iteración dentro de la plataforma **Google Stitch** mientras que la escritura y refactorización del código fue creada de manera colaborativa con **Google Gemini IA**. El proceso de creación fue el mismo en ambas herramientas: solicitudes mediante prompts e iteración para refinar contenido y requerimientos solicitados.
+
 ## Estructura del Proyecto
 - **index.html**: Página principal del portafolio.
 - **css/styles.css**: Archivo de estilos principal, con enfoque en Mobile First y uso de variables CSS.
